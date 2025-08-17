@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {Routes , Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Collection from './pages/collection'
@@ -11,6 +11,7 @@ import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
 import NotFound from './pages/NotFound'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/orders' element={<Order />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <Footer/>
     </div>
   )
 }

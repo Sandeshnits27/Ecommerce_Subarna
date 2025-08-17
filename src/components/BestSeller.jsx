@@ -9,11 +9,10 @@ const BestSeller = () => {
 
   useEffect(() => {
     if (products.length > 0) {
-      // Make sure the property name matches exactly what’s in your dataset
-      const bestProducts = products.filter(item => item.BestSeller === true);
+      const bestProducts = products.filter(item => item.bestseller); // ✅ fixed
       setBestSeller(bestProducts.slice(0, 5));
     }
-  }, [products]); // react when products changes
+  }, [products]);
 
   return (
     <div className="my-10">
@@ -25,15 +24,19 @@ const BestSeller = () => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
-        {bestSeller.map((item, index) => (
-          <ProductItetm
-            key={index}
-            id={item._id}
-            image={item.image} // ✅ fixed prop name
-            name={item.name}
-            price={item.price}
-          />
-        ))}
+        {bestSeller.length === 0 ? (
+          <p className="col-span-full text-center text-gray-500">No bestsellers found.</p>
+        ) : (
+          bestSeller.map((item) => (
+            <ProductItetm
+              key={item._id}
+              id={item._id}
+              image={item.image}
+              name={item.name}
+              price={item.price}
+            />
+          ))
+        )}
       </div>
     </div>
   );
